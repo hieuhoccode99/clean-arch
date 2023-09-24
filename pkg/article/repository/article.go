@@ -2,7 +2,7 @@ package repository
 
 import (
 	"clean-arch/domain"
-	"clean-arch/domain/models"
+	"clean-arch/domain/entity"
 	"clean-arch/pkg/article/dto"
 	"context"
 	"gorm.io/gorm"
@@ -17,14 +17,14 @@ func NewArticleRepository(conn *gorm.DB) IArticleRepository {
 }
 
 type IArticleRepository interface {
-	Get(ctx context.Context, req dto.GetArticleRequest) (res models.Article, err error)
+	Get(ctx context.Context, req dto.GetArticleRequest) (res entity.Article, err error)
 }
 
-func (m *articleRepo) fetch(ctx context.Context, query string, args ...interface{}) (result []models.Article, err error) {
+func (m *articleRepo) fetch(ctx context.Context, query string, args ...interface{}) (result []entity.Article, err error) {
 	return result, nil
 }
 
-func (m *articleRepo) Get(ctx context.Context, req dto.GetArticleRequest) (res models.Article, err error) {
+func (m *articleRepo) Get(ctx context.Context, req dto.GetArticleRequest) (res entity.Article, err error) {
 	query := `SELECT id,title,content, author_id, updated_at, created_at
   						FROM pkg WHERE title = ?`
 

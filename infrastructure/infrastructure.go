@@ -2,7 +2,7 @@ package infrastructure
 
 import (
 	"clean-arch/config"
-	"clean-arch/domain/models"
+	"clean-arch/domain/entity"
 	"database/sql"
 	"fmt"
 	"log"
@@ -78,7 +78,7 @@ func getDatabaseInstance(config *config.Config) (db *gorm.DB, err error) {
 
 func (d Database) RegisterTables() {
 	err := d.DB.AutoMigrate(
-		&models.Article{},
+		&entity.Article{},
 	)
 
 	if err != nil {
